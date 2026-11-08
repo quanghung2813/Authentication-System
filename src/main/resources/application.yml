@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: identity-service
+  profiles:
+    active: dev
+app:
+  jwt:
+    secret: "de4f95dea56187f0eb1c3289607a6e25369d4d0912f10bc81c101ad3812ac0d7273b18a1bec81121"
+    issuer: "https://auth.example.com"
+    audience: "https://api.example.com"
+    access-ttl: 15m
+    refresh-ttl: 7d
+    refresh-grace: 20s
+  security:
+    login-limit:
+      per-email-ip: 5
+      per-ip: 50
+      window: 15m
+  password-reset:
+    ttl: 30m
