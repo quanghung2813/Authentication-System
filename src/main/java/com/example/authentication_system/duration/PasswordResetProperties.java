@@ -1,4 +1,4 @@
-package com.example.jira.duration;
+package com.example.authentication_system.duration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

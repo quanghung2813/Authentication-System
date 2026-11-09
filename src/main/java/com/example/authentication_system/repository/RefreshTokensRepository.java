@@ -1,8 +1,7 @@
-package com.example.jira.repository;
+package com.example.authentication_system.repository;
 
-import com.example.jira.entity.RefreshTokens;
+import com.example.authentication_system.entity.RefreshTokens;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
 @Repository

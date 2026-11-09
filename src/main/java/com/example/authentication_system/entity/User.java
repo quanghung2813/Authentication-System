@@ -1,7 +1,7 @@
-package com.example.jira.entity;
+package com.example.authentication_system.entity;
 
-import com.example.jira.enums.Roles;
-import com.example.jira.utils.Constance;
+import com.example.authentication_system.enums.Roles;
+import com.example.authentication_system.utils.Constance;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;

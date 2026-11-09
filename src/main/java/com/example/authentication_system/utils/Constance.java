@@ -1,4 +1,4 @@
-package com.example.jira.utils;
+package com.example.authentication_system.utils;
 
 public final class Constance {
     public static final String UK_USER_MAIL = "uk_user_email";

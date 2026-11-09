@@ -1,6 +1,6 @@
-package com.example.jira.entity;
+package com.example.authentication_system.entity;
 
-import com.example.jira.utils.Constance;
+import com.example.authentication_system.utils.Constance;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

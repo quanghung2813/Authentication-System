@@ -1,8 +1,8 @@
-package com.example.jira;
+package com.example.authentication_system;
 
-import com.example.jira.duration.JwtProperties;
-import com.example.jira.duration.PasswordResetProperties;
-import com.example.jira.duration.SecurityProperties;
+import com.example.authentication_system.duration.JwtProperties;
+import com.example.authentication_system.duration.PasswordResetProperties;
+import com.example.authentication_system.duration.SecurityProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -16,10 +16,10 @@ import org.springframework.boot.jdbc.autoconfigure.DataSourceAutoConfiguration;
         SecurityProperties.class,
         PasswordResetProperties.class
 })
-public class JiraApplication {
+public class AuthSystemApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(JiraApplication.class, args);
+        SpringApplication.run(AuthSystemApplication.class, args);
     }
 
 }

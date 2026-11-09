@@ -1,10 +1,10 @@
-package com.example.jira;
+package com.example.authentication_system;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class JiraApplicationTests {
+class AuthSystemApplicationTests {
 
     @Test
     void contextLoads() {
