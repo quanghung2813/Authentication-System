@@ -3,7 +3,6 @@ package com.example.authentication_system.entity;
 import com.example.authentication_system.enums.Roles;
 import com.example.authentication_system.utils.Constance;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,12 +19,12 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(uniqueConstraints = @UniqueConstraint(name = Constance.UK_USER_MAIL, columnNames = "email"))
+@Table( name = "users", uniqueConstraints = @UniqueConstraint(name = Constance.UK_USER_MAIL, columnNames = "email"))
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-    @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$", message = "Email invalid")
+    @Column(nullable = false, name = "email")
     private String email;
     @Column(name = "password_hash", nullable = false)
     private String password;

@@ -14,8 +14,8 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(uniqueConstraints = @UniqueConstraint(name = Constance.UK_REFRESH_TOKENS_HASH, columnNames = "token_hash"))
-public class PasswordResetToken {
+@Table(name = "password_reset_tokens", uniqueConstraints = @UniqueConstraint(name = Constance.UK_REFRESH_TOKENS_HASH, columnNames = "token_hash"))
+public class PasswordResetTokens {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +24,7 @@ public class PasswordResetToken {
             name = "user_id",
             nullable = false,
             foreignKey = @ForeignKey(name = "fk_reset_tokens_user"))
-    private User userId;
+    private User user;
     @Column(name = "token_hash", nullable = false)
     private String token;
     @Column(nullable = false)
