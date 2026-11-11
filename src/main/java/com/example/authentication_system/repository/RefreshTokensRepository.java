@@ -1,4 +1,4 @@
-package com.example.authentication_system.dto.repository;
+package com.example.authentication_system.repository;
 
 import com.example.authentication_system.entity.RefreshTokens;
 import org.springframework.data.jpa.repository.JpaRepository;

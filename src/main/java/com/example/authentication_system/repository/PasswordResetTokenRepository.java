@@ -1,7 +1,6 @@
-package com.example.authentication_system.dto.repository;
+package com.example.authentication_system.repository;
 
-import com.example.authentication_system.entity.PasswordResetToken;
-import com.example.authentication_system.entity.RefreshTokens;
+import com.example.authentication_system.entity.PasswordResetTokens;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,16 +12,16 @@ import java.util.Date;
 import java.util.Optional;
 
 @Repository
-public interface PasswordResetTokenRepository extends JpaRepository<PasswordResetToken, Long> {
-    Optional<PasswordResetToken> findByToken(String token);
+public interface PasswordResetTokenRepository extends JpaRepository<PasswordResetTokens, Long> {
+    Optional<PasswordResetTokens> findByToken(String token);
 
     @Transactional
     @Modifying(clearAutomatically = true, flushAutomatically = true)
-    @Query("DELETE FROM PasswordResetToken p WHERE p.user.id = :userId")
+    @Query("DELETE FROM PasswordResetTokens p WHERE p.user.id = :userId")
     void deleteByUserId(@Param("userId") Long userId);
 
     @Transactional
     @Modifying(clearAutomatically = true, flushAutomatically = true)
-    @Query("DELETE FROM PasswordResetToken p WHERE p.expiresAt < :now OR p.used = true ")
+    @Query("DELETE FROM PasswordResetTokens p WHERE p.expiresAt < :now OR p.used = true ")
     void deleteAllExpiredOrUsed(@Param("now") Date now);
 }

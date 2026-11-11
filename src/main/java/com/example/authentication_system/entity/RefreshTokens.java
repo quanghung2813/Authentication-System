@@ -14,7 +14,7 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(uniqueConstraints = @UniqueConstraint(name = Constance.UK_REFRESH_TOKENS_HASH, columnNames = "token_hash"))
+@Table(name = "refresh_tokens", uniqueConstraints = @UniqueConstraint(name = Constance.UK_REFRESH_TOKENS_HASH, columnNames = "token_hash"))
 public class RefreshTokens {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,11 +24,11 @@ public class RefreshTokens {
             name = "user_id",
             nullable = false,
             foreignKey = @ForeignKey(name = "fk_refresh_tokens_user"))
-    private User user;
+    private Users users;
     @Column(name = "token_hash", nullable = false)
     private String token;
     @Column(name = "family_id", nullable = false)
-    private Long familyId;
+    private String familyId;
     @Column(nullable = false)
     private boolean revoked;
     @Column(name = "expires_at", nullable = false)
