@@ -24,7 +24,7 @@ public class PasswordResetToken {
             name = "user_id",
             nullable = false,
             foreignKey = @ForeignKey(name = "fk_reset_tokens_user"))
-    private User userId;
+    private User user;
     @Column(name = "token_hash", nullable = false)
     private String token;
     @Column(nullable = false)
