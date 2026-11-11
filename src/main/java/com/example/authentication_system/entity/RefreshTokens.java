@@ -24,7 +24,7 @@ public class RefreshTokens {
             name = "user_id",
             nullable = false,
             foreignKey = @ForeignKey(name = "fk_refresh_tokens_user"))
-    private Users users;
+    private User user;
     @Column(name = "token_hash", nullable = false)
     private String token;
     @Column(name = "family_id", nullable = false)
