@@ -1,9 +1,12 @@
 package com.example.authentication_system.exception;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpStatus;
 
 @Getter
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public enum ErrorCode {
     EMAIL_EXISTED(1001, "Registration with an existing email address", HttpStatus.CONFLICT),
     INVALID_CREDENTIALS(1002, "Incorrect email or password", HttpStatus.UNAUTHORIZED),
@@ -25,7 +28,7 @@ public enum ErrorCode {
         this.httpStatus = httpStatus;
     }
 
-    private final int code;
-    private final String message;
-    private final HttpStatus httpStatus;
+    int code;
+    String message;
+    HttpStatus httpStatus;
 }

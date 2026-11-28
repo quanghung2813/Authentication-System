@@ -3,10 +3,8 @@ package com.example.authentication_system.entity;
 import com.example.authentication_system.enums.Roles;
 import com.example.authentication_system.utils.Constance;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -20,26 +18,27 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table( name = "users", uniqueConstraints = @UniqueConstraint(name = Constance.UK_USER_MAIL, columnNames = "email"))
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class User {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
+    Long id;
     @Column(nullable = false, name = "email")
-    private String email;
+    String email;
     @Column(name = "password_hash", nullable = false)
-    private String password;
-    @Column(name = "full_name", nullable = false)
-    private String fullName;
+    String password;
+    @Column(name = "full_name")
+    String fullName;
     @Column(nullable = false)
-    private boolean enabled;
+    boolean enabled;
     @Column(name = "password_changed_at")
-    private Date passwordChangedAt;
+    Date passwordChangedAt;
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
-    private Date createdAt;
+    Date createdAt;
     @UpdateTimestamp
     @Column(name = "updated_at", nullable = false)
-    private Date updatedAt;
+    Date updatedAt;
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(
             name = "user_roles",
@@ -51,5 +50,5 @@ public class User {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     @BatchSize(size = 50)
-    private Set<Roles> roles;
+    Set<Roles> roles;
 }

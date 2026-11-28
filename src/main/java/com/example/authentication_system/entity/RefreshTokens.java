@@ -2,10 +2,8 @@ package com.example.authentication_system.entity;
 
 import com.example.authentication_system.utils.Constance;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
 
@@ -15,24 +13,25 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "refresh_tokens", uniqueConstraints = @UniqueConstraint(name = Constance.UK_REFRESH_TOKENS_HASH, columnNames = "token_hash"))
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class RefreshTokens {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "user_id",
             nullable = false,
             foreignKey = @ForeignKey(name = "fk_refresh_tokens_user"))
-    private User user;
+    User user;
     @Column(name = "token_hash", nullable = false)
-    private String token;
+    String token;
     @Column(name = "family_id", nullable = false)
-    private String familyId;
+    String familyId;
     @Column(nullable = false)
-    private boolean revoked;
+    boolean revoked;
     @Column(name = "expires_at", nullable = false)
-    private Date expiresAt;
+    Date expiresAt;
     @Column(name = "created_at", nullable = false, updatable = false)
-    private Date createdAt;
+    Date createdAt;
 }

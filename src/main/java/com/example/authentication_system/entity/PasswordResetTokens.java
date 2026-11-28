@@ -2,10 +2,8 @@ package com.example.authentication_system.entity;
 
 import com.example.authentication_system.utils.Constance;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import java.util.Date;
 
@@ -15,22 +13,23 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "password_reset_tokens", uniqueConstraints = @UniqueConstraint(name = Constance.UK_RESET_TOKEN_HASH, columnNames = "token_hash"))
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class PasswordResetTokens {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    Long id;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "user_id",
             nullable = false,
             foreignKey = @ForeignKey(name = "fk_reset_tokens_user"))
-    private User user;
+    User user;
     @Column(name = "token_hash", nullable = false)
-    private String token;
+    String token;
     @Column(nullable = false)
-    private boolean used;
+    boolean used;
     @Column(name = "expires_at", nullable = false)
-    private Date expiresAt;
+    Date expiresAt;
     @Column(name = "created_at", nullable = false, updatable = false)
-    private Date createdAt;
+    Date createdAt;
 }

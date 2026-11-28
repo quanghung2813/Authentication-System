@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,8 +35,6 @@ public class SecurityConfig {
     // Cho phép externalize cấu hình strength qua application.yml (mặc định là 12)
     @Value("${security.password.bcrypt-strength:12}")
     private int bcryptStrength;
-
-    private final ObjectMapper objectMapper;
     
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -56,10 +55,16 @@ public class SecurityConfig {
             HttpSecurity http,
             CustomAuthEntryPoint authenticationEntryPoint,
             CustomAccessDeniedHandler accessDeniedHandler) {
-        http.exceptionHandling(e -> e
-                .authenticationEntryPoint(authenticationEntryPoint)
-                .accessDeniedHandler(accessDeniedHandler)
-        );
+        http
+                .csrf(AbstractHttpConfigurer::disable)
+                .exceptionHandling(e -> e
+                        .authenticationEntryPoint(authenticationEntryPoint)
+                        .accessDeniedHandler(accessDeniedHandler)
+                )
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/auth/register").permitAll()
+                        .anyRequest().authenticated()
+                );
         return http.build();
     }
 }
