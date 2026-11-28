@@ -6,7 +6,6 @@ import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -43,7 +42,8 @@ public class GlobalExceptionHandler {
                 .status(errorCode.getHttpStatus())
                 .body(ApiResponse.error(
                         errorCode.getCode(),
-                        errorCode.getMessage()));
+                        errorCode.getMessage()
+                ));
     }
 
     // Lỗi phân quyền @PreAuthorize

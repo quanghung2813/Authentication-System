@@ -3,7 +3,6 @@ spring:
     name: identity-service
   profiles:
     active: dev
-
 app:
   jwt:
     secret: "de4f95dea56187f0eb1c3289607a6e25369d4d0912f10bc81c101ad3812ac0d7273b18a1bec81121"
@@ -21,3 +20,7 @@ app:
       bcrypt-strength: 12
   password-reset:
     ttl: 30m
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
